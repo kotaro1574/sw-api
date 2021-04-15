@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-function App() {
+const SWindex = () => {
+  // const [SW, setSW] = useState([])
+  // getData(() => {
+  //   axios.get(`https://swapi.dev/api/people`)
+  //     .then(response => setSW(response.data))
+  //     .catch(error => console.log(error))
+  // }, [])
+
+
+  const getData = async () => {
+        try {    
+          const result = await axios.get('/api/people/')
+          console.log(result);
+        } catch (error) {    
+          console.log("error!!");
+        }
+    };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+      <div className="App">
+      <div>
+        <button onClick={() =>getData()}>get profile!</button>
+      </div>
     </div>
+      {/* <ul>
+        { SW.map(SW => <li>{SW.results}</li>)}
+      </ul> */}
+    </>
   );
 }
 
-export default App;
+export default SWindex;

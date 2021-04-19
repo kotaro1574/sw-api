@@ -1,30 +1,20 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react'
+import { BrowserRouter, Switch, Route} from 'react-router-dom'
+import Characters from './SW/Characters'
+import Character from './SW/Character'
 
-const SWindex = () => {
-  const [SW, setSW] = useState([])
-  const getData = () => {
-    axios.get(`https://swapi.dev/api/people/`)
-      .then((response) => {
-        console.log(response.data.results)
-        // setSW(response.data.results.map(name => name.name))
-      })
-      .catch(error => console.log(error))
-  }
+const App = () => {
 
   return (
     <>
-      <div className="App">
-        <div>
-          <button onClick={getData()}>get profile!</button>
-          {SW}
-        </div>
-      </div>
-      {/* <ul>
-        { SW.map(SW => <li>{SW}</li>)}
-      </ul> */}
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact children={<Characters />} />
+          <Route path="/:id" children={<Character/>} />
+        </Switch>
+      </BrowserRouter>
     </>
   );
 }
 
-export default SWindex;
+export default App;
